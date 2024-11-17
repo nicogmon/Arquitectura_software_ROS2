@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Sequence>
+            <Repeat num_cycles="3">
+                <Sequence>
+                    <ReactiveFallback>
+                        <Condition ID="DetectedPersonNode" detection="{frame_ID}"/>
+                    </ReactiveFallback>
+                    <ReactiveFallback>
+                        <Action ID="PursuePersonNode" objective="{frame_ID}"/>
+                        <Action ID="AvoidPersonNode"/>
+                    </ReactiveFallback>
+                </Sequence>
+            </Repeat>
+        </Sequence>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="AvoidPersonNode"/>
+        <Condition ID="DetectedPersonNode">
+            <output_port default="{frame_ID}" name="detection">Detection person</output_port>
+        </Condition>
+        <Action ID="PursuePersonNode">
+            <input_port default="1" name="objective">Person to pursue</input_port>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>

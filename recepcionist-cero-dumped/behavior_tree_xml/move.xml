@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Repeat num_cycles="2">
+            <Sequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{door}"/>
+                    <Condition ID="DetectedPersonNode"/>
+                    <Action ID="DialogName" name_="{name_}"/>
+                </Sequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{sillas}"/>
+                    <Action ID="DialogDrink" drink="{drink_}" name_="{name_}"/>
+                </Sequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{mesa}"/>
+                    <Action ID="DialogBarman" drink="{drink_}"/>
+                </Sequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{sillas}"/>
+                    <Action ID="GiveDrink"/>
+                </Sequence>
+            </Sequence>
+        </Repeat>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="DetectedPersonNode"/>
+        <Action ID="DialogBarman">
+            <inout_port name="drink"/>
+        </Action>
+        <Action ID="DialogDrink">
+            <output_port default="{drink_}" name="drink"/>
+            <input_port default="{name_}" name="nameIN_"/>
+        </Action>
+        <Action ID="DialogName">
+            <output_port default="{name_}" name="nameOUT_"/>
+        </Action>
+        <Action ID="GiveDrink"/>
+        <Action ID="Move">
+            <input_port name="wp_name"/>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>

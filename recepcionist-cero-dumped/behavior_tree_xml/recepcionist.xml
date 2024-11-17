@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <KeepRunningUntilFailure>
+            <ReactiveSequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{door}"/>
+                    <Condition ID="DetectedPersonNode"/>
+                </Sequence>
+                <Sequence>
+                    <Action ID="Move" wp_name="{sillas}"/>
+                    <!-- <Condition ID="EmptyChair"/> -->
+                </Sequence>
+            </ReactiveSequence>
+        </KeepRunningUntilFailure>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Condition ID="DetectedPersonNode"/>
+        <!-- <Condition ID="EmptyChair"/> -->
+        <Action ID="Move">
+            <input_port name="wp_name"/>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
